@@ -2,24 +2,10 @@ import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import logo from '../Asset/logo.png';
 
-
-
 export default function navbar() {
-
-    const pages = ['Products', 'Pricing', 'Blog'];
-
 
     return (
         // <AppBar position="static" elevation={0} sx={{ bgcolor: 'white' }}>
@@ -48,16 +34,18 @@ export default function navbar() {
         //         </Box>
         //     </Toolbar>
         // </AppBar>
-        <AppBar position="static" elevation={0} sx={{ bgcolor: 'transparent', width: '60%', margin: '0 auto' }}>
-            <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <AppBar position="sticky" elevation={0} sx={{ bgcolor: '#f9f8f2' }}>
+
+            <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '60%', margin: '0 auto' }}>
                 <Box>
-                    <img src={logo} alt="Airbnb" height="150" /> {/* Adjust the height to make the logo bigger */}
+                    <a href='/'><img src={logo} alt="recipequest" height="120" /></a>
+
                 </Box>
                 <Box>
-                    <Button variant="outlined" sx={{ paddingY: '8px', paddingX: '24px' }}>
+                    <Button variant="outlined" sx={{ paddingY: '8px', paddingX: '24px', ':hover': { bgcolor: '#bb9457' } }}>
                         Sign Up
                     </Button>
-                    <Button variant="contained" color="primary" sx={{ paddingY: '8px', paddingX: '24px', marginLeft: 2 }}>
+                    <Button variant="contained" color="secondary" sx={{ paddingY: '8px', paddingX: '24px', marginLeft: 2, ':hover': { bgcolor: '#432818' } }}>
                         Log In
                     </Button>
                 </Box>
