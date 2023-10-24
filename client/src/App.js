@@ -3,7 +3,11 @@ import './App.css';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Home from './Layout/Home';
-import EdamamApi from './Recipe/EdamamApi';
+import EdamamApi from './EdamamApi/EdamamApi';
+import Ingredient from './EdamamApi/Ingredient';
+import Recommend from './EdamamApi/Recommend';
+import SignUp from './Components/SignUp';
+import SignIn from './Components/SignIn';
 
 function App() {
 
@@ -18,6 +22,12 @@ function App() {
       dark: {
         main: '#001d2f', //
       },
+      clear: {
+        main: '#F4FAFC'
+      },
+      bar: {
+        main: '#f9f8f2'
+      }
     },
     typography: {
 
@@ -64,48 +74,13 @@ function App() {
     <ThemeProvider theme={theme}>
 
       <Routes>
-
-        <Route path="/" element={<Home />} />
+        <Route path="" element={<Home />} />
         <Route path="/edamamApi" element={<EdamamApi />} />
-
+        <Route path="/ingredient" element={<Ingredient />} />
+        <Route path="/recommend" element={<Recommend />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signin" element={<SignIn />} />
       </Routes>
-
-      {/* <div>
-        <h1>Edamam Recipes</h1>
-        <ul>
-          {edamamRecipes.map((hit, index) => {
-            const recipe = hit.recipe;
-            return (
-              <li key={index}>
-                <h2>{recipe.label}</h2>
-                <img src={recipe.image} alt={recipe.label} />
-                <p>Calories: {recipe.calories}</p>
-                <p>Ingredients:</p>
-                <ul>
-                  {recipe.ingredients.map((ingredient, i) => (
-                    <li key={i}>{ingredient.text}</li>
-                  ))}
-                </ul>
-                <p>Instructions:</p>
-                { <ol>
-                  {recipe.ingredientLines.map((instruction, i) => (
-                    <li key={i}>{instruction}</li>
-                  ))}
-                </ol> }
-                <p>
-                  <a href={recipe.url} target="_blank" rel="noopener noreferrer">
-                    See Recipe
-                  </a>
-                </p>
-
-              </li>
-
-            );
-          })}
-        </ul>
-      </div> */}
-
-
 
     </ThemeProvider>
   );

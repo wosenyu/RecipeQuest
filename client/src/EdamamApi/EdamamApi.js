@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import Navbar from '../Components/navbar';
+import Navbar from '../Components/Navbar';
 import { TextField, Typography, IconButton, Button } from '@mui/material';
 import SearchIcon from "@mui/icons-material/Search";
 import RecipeList from '../Components/RecipeList';
@@ -31,7 +31,7 @@ export default function EdamamApi() {
             <div className="App">
                 <Navbar />
 
-                <h1>Edamam Recipes (Top 5)</h1>
+                <h1>Recipes (Top 10)</h1>
                 <div>
 
                     <TextField
@@ -80,6 +80,7 @@ export default function EdamamApi() {
                 )}
 
             </div>
+
         </div>
     )
 }

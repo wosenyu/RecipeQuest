@@ -74,7 +74,7 @@ const RecipeCard = ({ title, cuisineType, ingredientLines, image, url }) => {
                             <Typography variant="h6">{title}</Typography>
                             <br />
                             <Typography variant="h6">Ingredients</Typography>
-                            <Divider dark />
+                            <Divider />
                             <List>
                                 {ingredientLines && ingredientLines.length > 0 ? (
                                     ingredientLines.map((instruction, i) => (
