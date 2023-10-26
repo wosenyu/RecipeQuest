@@ -16,7 +16,7 @@ export default function Ingredient() {
 
         const formattedIngredients = searchQuery.replace(/\s/g, '+');
 
-        const apiUrl = `http://localhost:3001/api/ingredient?q=${formattedIngredients}&from=0&to=5`;
+        const apiUrl = `https://recipe-quest-backend-17dg9ai0s-wosenyu.vercel.app/api/ingredient?q=${formattedIngredients}&from=0&to=5`;
 
         axios.get(apiUrl)
             .then((response) => {
