@@ -33,8 +33,8 @@ app.use(cors());
 // });
 
 app.get('/api/edamam-recipes', (req, res) => {
-    const appId = ''; // Replace with your Edamam API App ID
-    const appKey = '';
+    const appId = 'f0f96351'; // Replace with your Edamam API App ID
+    const appKey = '82a7a7cb28fdd87b30467ceb334749b8';
     const query = req.query.q
     const requestLimit = 15
 
