@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import Navbar from '../Components/Navbar';
+import Navbar from '../Components/navbar';
 import { TextField, Typography, IconButton, Button } from '@mui/material';
 import SearchIcon from "@mui/icons-material/Search";
 import RecipeList from '../Components/RecipeList';
