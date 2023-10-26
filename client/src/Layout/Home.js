@@ -2,7 +2,7 @@ import RecipeBook from "../Asset/Recipesbook.png"
 import Recommend from "../Asset/recommend.png"
 import Missing from "../Asset/missing.png"
 import { Typography, Button } from '@mui/material';
-import Navbar from '../Components/Navbar'
+import Navbar from '../Components/navbar'
 import Header from './Header';
 import Footer from "./Footer";
 import { useNavigate } from 'react-router-dom';
