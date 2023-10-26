@@ -17,7 +17,7 @@ export default function EdamamApi() {
 
     const handleSearch = () => {
         // Fetch data from the Edamam API with the search query
-        axios.get(`http://localhost:3001/api/edamam-recipes?q=${searchQuery}&from=0&to=4`)
+        axios.get(`https://recipe-quest-backend-17dg9ai0s-wosenyu.vercel.app/api/edamam-recipes?q=${searchQuery}&from=0&to=4`)
             .then((response) => {
                 const data = response.data.hits;
                 console.log(data); // Log the data received from the API
