@@ -2,7 +2,7 @@ import React from "react"
 import { useState } from "react"
 import axios from "axios"
 import { TextField, Typography, IconButton, Button } from '@mui/material';
-import Navbar from "../Components/Navbar";
+import Navbar from "../Components/navbar";
 import SearchIcon from "@mui/icons-material/Search";
 import RecipeList from '../Components/RecipeList';
 
