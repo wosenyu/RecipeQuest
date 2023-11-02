@@ -1,14 +1,23 @@
 
 import './App.css';
+import React, { useEffect, useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+import { Button } from '@mui/material';
 import Home from './Layout/Home';
 import EdamamApi from './EdamamApi/EdamamApi';
 import Ingredient from './EdamamApi/Ingredient';
 import Recommend from './EdamamApi/Recommend';
 import SignUp from './Components/SignUp';
 import SignIn from './Components/SignIn';
+import UserHome from './Layout/userHome';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+import AuthContext from './Context/AuthContext';
 
+import { Protected } from './Components/Protected';
 function App() {
 
   const theme = createTheme({
@@ -70,17 +79,57 @@ function App() {
 
 
 
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Home />
+    },
+    {
+      path: "/edamamApi",
+      element: <EdamamApi />
+    },
+    {
+      path: "/ingredient",
+      element: <Ingredient />
+    },
+    {
+      path: "/recommend",
+      element: <Recommend />
+    },
+    {
+      path: "/signup",
+      element: <SignUp />
+    },
+    {
+      path: "/signin",
+      element: <SignIn />
+    },
+    {
+      path: "/userhome",
+      element: <Protected><UserHome /></Protected>
+    }
+  ])
+
   return (
     <ThemeProvider theme={theme}>
 
-      <Routes>
+      {/* <Routes>
         <Route path="" element={<Home />} />
         <Route path="/edamamApi" element={<EdamamApi />} />
         <Route path="/ingredient" element={<Ingredient />} />
         <Route path="/recommend" element={<Recommend />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
-      </Routes>
+        <Route
+          path="/userHome"
+          element={user ? <UserHome /> : <Navigate to="/signin" />}
+        />
+      </Routes> */}
+      <AuthContext>
+        <RouterProvider router={router}></RouterProvider>
+      </AuthContext>
+
+
 
     </ThemeProvider>
   );
