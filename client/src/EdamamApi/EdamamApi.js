@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Navbar from '../Components/navbar';
-import { TextField, Typography, IconButton, Button } from '@mui/material';
+import { TextField, Typography, IconButton, Button, CircularProgress } from '@mui/material';
 import SearchIcon from "@mui/icons-material/Search";
 import RecipeList from '../Components/RecipeList';
 
@@ -14,18 +14,44 @@ export default function EdamamApi() {
     const [edamamRecipes, setEdamamRecipes] = useState([])
     const [searchQuery, setSearchQuery] = useState('')
 
+    const [loading, setLoading] = useState(false);
+    const [progress, setProgress] = useState(0);
+    // const handleSearch = () => {
+    //     // Fetch data from the Edamam API with the search query
+    //     axios.get(`https://recipe-quest-backend-17dg9ai0s-wosenyu.vercel.app/api/edamam-recipes?q=${searchQuery}&from=0&to=4`)
+    //         .then((response) => {
+    //             const data = response.data.hits;
+    //             console.log(data); // Log the data received from the API
+    //             setEdamamRecipes(data);
+    //             console.log(edamamRecipes); // Log the state after updating
+    //         })
+    //         .catch((error) => console.error(error));
+    // };
 
     const handleSearch = () => {
-        // Fetch data from the Edamam API with the search query
-        axios.get(`https://recipe-quest-backend-17dg9ai0s-wosenyu.vercel.app/api/edamam-recipes?q=${searchQuery}&from=0&to=4`)
+        setLoading(true); // Start loading
+
+        axios
+            .get(`https://recipe-quest-backend-17dg9ai0s-wosenyu.vercel.app/api/edamam-recipes?q=${searchQuery}&from=0&to=4`, {
+                onDownloadProgress: (progressEvent) => {
+                    const { loaded, total } = progressEvent;
+
+                    // Calculate percentage progress
+                    const percentCompleted = Math.round((loaded * 100) / total);
+                    setProgress(percentCompleted); // Update progress state
+                },
+            })
             .then((response) => {
                 const data = response.data.hits;
-                console.log(data); // Log the data received from the API
                 setEdamamRecipes(data);
-                console.log(edamamRecipes); // Log the state after updating
             })
-            .catch((error) => console.error(error));
+            .catch((error) => console.error(error))
+            .finally(() => {
+                setLoading(false); // Turn off loading when finished
+                setProgress(0); // Reset progress
+            });
     };
+
     return (
         <div>
             <div className="App">
@@ -49,6 +75,8 @@ export default function EdamamApi() {
                     <IconButton onClick={handleSearch}><SearchIcon color="secondary" fontSize="large" /></IconButton>
 
                 </div>
+
+                {loading && <CircularProgress value={progress} max="100">{progress}%</CircularProgress>}
                 {/* <ul>
                     {edamamRecipes.map((hit, index) => {
                         const recipe = hit.recipe;
@@ -76,7 +104,7 @@ export default function EdamamApi() {
                 {edamamRecipes && edamamRecipes.length > 0 ? (
                     <RecipeList recipes={edamamRecipes} />
                 ) : (
-                    <p>No recipes found.</p>
+                    <p></p>
                 )}
 
             </div>

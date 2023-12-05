@@ -120,10 +120,7 @@ function App() {
         <Route path="/recommend" element={<Recommend />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
-        <Route
-          path="/userHome"
-          element={user ? <UserHome /> : <Navigate to="/signin" />}
-        />
+
       </Routes> */}
       <AuthContext>
         <RouterProvider router={router}></RouterProvider>

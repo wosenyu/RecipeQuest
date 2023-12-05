@@ -77,7 +77,7 @@ export default function SignUp() {
                 console.error('Registration error:', error.message);
                 <Alert severity="error">
                     <AlertTitle>Error</AlertTitle>
-                    This is an error alert — <strong>check it out!</strong>
+                    Registration error: — <strong> error.message!</strong>
                 </Alert>
             });
     };

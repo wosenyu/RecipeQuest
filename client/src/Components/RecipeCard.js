@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
 import {
     Box,
     Card,
@@ -36,7 +39,32 @@ const RecipeCard = ({ title, cuisineType, ingredientLines, image, url }) => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
+    const handleSaveRecipe = () => {
+        const user = firebase.auth().currentUser;
 
+        if (user) {
+            const db = firebase.firestore();
+            const recipeRef = db.collection('users').doc(user.uid).collection('recipes');
+
+            // Save the recipe data to Firestore
+            recipeRef.add({
+                title,
+                image,
+                cuisineType,
+                ingredientLines,
+                url,
+            })
+                .then((docRef) => {
+                    console.log('Recipe saved with ID:', docRef.id);
+                })
+                .catch((error) => {
+                    console.error('Error adding recipe:', error);
+                });
+        } else {
+            // User is not logged in, handle accordingly
+            console.log('User not logged in!');
+        }
+    };
 
     return (
         <Box display="flex" flexDirection="column" alignItems="center" p={1} m={3} width="300px" bgcolor="background.paper">
@@ -55,7 +83,7 @@ const RecipeCard = ({ title, cuisineType, ingredientLines, image, url }) => {
                             Open Recipe
                         </Button>
                         <IconButton>
-                            <FavoriteIcon color="secondary" sx={{ ":hover": { bgcolor: "#432818" } }} />
+                            <FavoriteIcon color="secondary" sx={{ ":hover": { bgcolor: "#432818" } }} onClick={handleSaveRecipe} />
                         </IconButton>
                         <IconButton>
                             <ShareIcon color="secondary" sx={{ ":hover": { bgcolor: "#432818" } }} />
