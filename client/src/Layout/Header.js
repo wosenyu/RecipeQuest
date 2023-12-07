@@ -18,15 +18,17 @@ export default function Header() {
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: '#f9f8f2' }}>
             <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
                 <img src={logo} alt="RecipeQuest Logo" style={{ maxWidth: '100%', height: 'auto' }} />
-                <Typography variant='h1' color="dark" onClick={navigateToEdama}>
+
+                <Typography variant='h1' color="dark">
                     Cook Savor Explore with RecipeQuest
                 </Typography>
 
 
-                <Button variant="contained" onClick={navigateToEdama} sx={{ mb: "20px" }}>
-                    Search for recipe
-                </Button>
+
             </div>
+            <Button variant="contained" onClick={navigateToEdama} sx={{ mb: "20px", mt: '20px' }}>
+                Search for recipe
+            </Button>
 
 
         </div>

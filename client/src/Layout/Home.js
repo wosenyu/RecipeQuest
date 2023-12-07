@@ -55,9 +55,9 @@ export default function Home() {
             <section style={{ marginTop: '5em', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 
                 <Typography variant='body1' color="dark" style={{ marginLeft: '1em', textAlign: 'center' }}>
-                    Feeling unsure about what to have for your meal? <br /> Allow us to assist you by exploring our<br /> extensive collection of recommended recipes.<br /> Discover your perfect culinary choice here.
-                    <Button variant="contained" sx={{ paddingY: '8px', paddingX: '24px' }} onClick={() => navigateToIngredient()}>
-                        Get started today!
+                    Feeling unsure about what to have for your meal? <br /> Allow us to assist you by exploring our<br /> extensive collection of recommended recipes.<br /> Discover your perfect culinary choice here.<br />
+                    <br /> <Button variant="contained" sx={{ paddingY: '8px', paddingX: '24px' }} onClick={() => navigateToRecommend()}>
+                        Explore Recipe!
                     </Button>
                 </Typography>
                 <div style={{ margin: '1em' }}>
@@ -70,8 +70,8 @@ export default function Home() {
                 </div>
                 <Typography variant='body1' color="dark" style={{ marginLeft: '1em', textAlign: 'center' }}>
                     Missing an ingredient? Just enter the ingredients you have <br /> we'll provide you with a tailored recipe based on what you've got in your kitchen. <br /> It's the perfect solution for making a delicious meal without having to run to the store.
-                    <Button variant="contained" sx={{ paddingY: '8px', paddingX: '24px' }} onClick={() => navigateToRecommend()}>
-                        Get started today!
+                    <br /> <br /> <Button variant="contained" sx={{ paddingY: '8px', paddingX: '24px' }} onClick={() => navigateToIngredient()}>
+                        Find out now!
                     </Button>
                 </Typography>
             </section>

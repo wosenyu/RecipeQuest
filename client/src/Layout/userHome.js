@@ -5,7 +5,6 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import { Button } from '@mui/material';
 import Navbar from '../Components/navbar';
-
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 
@@ -50,6 +49,7 @@ export default function UserHome() {
             <Navbar />
 
             <h2>User Recipes</h2>
+
             <ul>
                 {recipes.map((recipe) => (
                     <li key={recipe.id}>

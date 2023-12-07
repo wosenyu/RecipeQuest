@@ -23,13 +23,13 @@ function App() {
   const theme = createTheme({
     palette: {
       primary: {
-        main: '#432818', // A blue color similar to ExpressVPN
+        main: '#432818',
       },
       secondary: {
-        main: '#bb9457', // A contrasting color
+        main: '#bb9457',
       },
       dark: {
-        main: '#001d2f', //
+        main: '#001d2f',
       },
       clear: {
         main: '#F4FAFC'

@@ -1,10 +1,10 @@
 import React from 'react';
-import RecipeCard from './RecipeCard'; // Import your RecipeCard component
+import RecipeCard from './RecipeCard';
 
 const RecipeList = ({ recipes }) => {
     return (
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
-            {recipes && recipes.length > 0 ? ( // Check if recipes is defined and not empty
+            {recipes && recipes.length > 0 ? (
                 recipes.map((recipe, index) => (
                     <RecipeCard
                         key={index}

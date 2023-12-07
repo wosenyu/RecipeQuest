@@ -15,7 +15,9 @@ import {
     IconButton,
     Divider,
     Modal,
-    Button
+    Button,
+    Alert,
+    AlertTitle
 } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import ShareIcon from '@mui/icons-material/Share'
@@ -36,35 +38,45 @@ const style = {
 const RecipeCard = ({ title, cuisineType, ingredientLines, image, url }) => {
 
     const [open, setOpen] = React.useState(false);
+    const [showAlert, setShowAlert] = useState(false);
+    const [showRecipeSaved, setShowRecipeSaved] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     const handleSaveRecipe = () => {
         const user = firebase.auth().currentUser;
 
-        if (user) {
+        if (!user) {
+            setShowAlert(true);
+        } else {
+            setShowRecipeSaved(true);
+
             const db = firebase.firestore();
             const recipeRef = db.collection('users').doc(user.uid).collection('recipes');
 
-            // Save the recipe data to Firestore
-            recipeRef.add({
-                title,
-                image,
-                cuisineType,
-                ingredientLines,
-                url,
-            })
+            recipeRef
+                .add({
+                    title,
+                    image,
+                    cuisineType,
+                    ingredientLines,
+                    url,
+                })
                 .then((docRef) => {
                     console.log('Recipe saved with ID:', docRef.id);
                 })
                 .catch((error) => {
                     console.error('Error adding recipe:', error);
                 });
-        } else {
-            // User is not logged in, handle accordingly
-            console.log('User not logged in!');
         }
     };
+
+    const handleCloseAlert = () => {
+        setShowAlert(false);
+    };
+    const handleCloseRecipeSavedAlert = () => {
+        setShowRecipeSaved(false);
+    }
 
     return (
         <Box display="flex" flexDirection="column" alignItems="center" p={1} m={3} width="300px" bgcolor="background.paper">
@@ -79,15 +91,43 @@ const RecipeCard = ({ title, cuisineType, ingredientLines, image, url }) => {
                             : "N/A"}
                     </Typography>
                     <div style={{ marginTop: 'auto' }}>
-                        <Button variant="contained" sx={{ margin: '10px', ":hover": { bgcolor: "#bb9457" } }} onClick={handleOpen}>
-                            Open Recipe
-                        </Button>
+
+                        {showAlert && (
+                            <Alert severity="info" onClose={handleCloseAlert}>
+                                <AlertTitle>Info</AlertTitle>
+                                Please{' '}
+                                <Link href="/signin" variant="body2" >
+                                    log in
+                                </Link>{' '}
+                                to save the recipe.
+                            </Alert>
+                        )}
+                        {showRecipeSaved && (
+                            <Alert severity="success" onClose={handleCloseRecipeSavedAlert}>
+                                <AlertTitle>Success</AlertTitle>
+                                Recipe saved!{' '}
+                                Check out recipe at {' '} <br />
+                                <Link href="/userhome" variant="body2" >
+                                    User Home
+                                </Link>
+
+                            </Alert>
+                        )}
                         <IconButton>
                             <FavoriteIcon color="secondary" sx={{ ":hover": { bgcolor: "#432818" } }} onClick={handleSaveRecipe} />
                         </IconButton>
-                        <IconButton>
+                        <Button variant="contained" sx={{ margin: '10px', ":hover": { bgcolor: "#bb9457" } }} onClick={handleOpen}>
+                            Open Recipe
+                        </Button>
+                        <Button variant="outlined" color='primary' sx={{ margin: '10px', ":hover": { bgcolor: "#bb9457" } }} onClick={handleSaveRecipe}>
+                            save
+                        </Button>
+                        {/* <IconButton>
+                            <FavoriteIcon color="secondary" sx={{ ":hover": { bgcolor: "#432818" } }} onClick={handleSaveRecipe} />
+                        </IconButton> */}
+                        {/* <IconButton>
                             <ShareIcon color="secondary" sx={{ ":hover": { bgcolor: "#432818" } }} />
-                        </IconButton>
+                        </IconButton> */}
                     </div>
                     <Modal
                         open={open}
